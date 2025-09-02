@@ -1,0 +1,30 @@
+{
+  "name": "nasa-apis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./public/input.css -o ./public/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanicells/NASA-APIs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanicells/NASA-APIs/issues"
+  },
+  "homepage": "https://github.com/yanicells/NASA-APIs#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "axios": "^1.11.0",
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "tailwindcss": "^4.1.12"
+  }
+}
