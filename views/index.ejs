@@ -10,12 +10,21 @@
     <%- include("partials/header.ejs") %>
 
     <div class="text-center">
-        <h1 class="text-5xl font-bold text-amber-300 mb-4">NASA APIs</h1>
+        <h1 class="text-5xl font-bold text-white mb-4">NASA APIs</h1>
         <p class="text-gray-300 text-xl">Welcome to your NASA APIs project!</p>
         <div class="mt-8">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                Get Started
-            </button>
+            <a href="/apod">
+                <button
+                    class="bg-slate-600 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 mx-4">
+                    NASA Picture
+                </button>
+            </a>
+            <a href="/mars-weather">
+                <button
+                    class="bg-slate-600 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                    Mars Weather
+                </button>
+            </a>
         </div>
     </div>
 
