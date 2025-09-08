@@ -21,11 +21,11 @@
                         NASA APOD, Click Here
                     </button>
                 </form>
-                <%if(locals.date && locals.text && locals.title && image.date){%>
-                    <h2><%= title %></h2>
-                    <p><%= date %></p>
-                    <img src=image alt="NASA APOD">
-                    <p><%= text %></p>
+                <%if(locals.text){%>
+                    <h2 class="text-3xl font-semibold text-white mt-8"><%= title %></h2>
+                    <p class="text-gray-400 mt-2"><%= date %></p>
+                    <img class="mt-4 rounded-lg" src="<%= image %>" alt="NASA APOD">
+                    <p class="text-gray-300 mt-4"><%= text %></p>
                 <%}%>
                 <p>
 
