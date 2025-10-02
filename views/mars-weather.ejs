@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>NASA Mars Weather</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+
+<body class="bg-gray-900 min-h-screen flex flex-col">
+    <%- include("partials/header.ejs") %>
+
+        <main class="flex-1 px-4 py-8">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">
+                    Mars Weather
+                    <span class="bg-gradient-to-r from-red-400 to-orange-500 bg-clip-text text-transparent">
+                        Data
+                    </span>
+                </h1>
+            </div>
+
+            <h2 class="text-3xl font-bold text-white text-center mb-8">No results found...</h2>
+            <div class="max-w-2xl mx-auto mt-6">
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700">
+                    <h2 class="text-xl font-bold text-white mb-6 text-center">Weather Data
+                        Data</h2>
+                    <ul class="grid grid-cols-5 gap-3 text-center">
+                        <li
+                            class="bg-red-600/20 text-red-300 border border-red-500/30 rounded-lg py-2 px-3 text-sm cursor-pointer hover:bg-red-600/30 hover:text-red-200 transition-all duration-200">Test
+                        </li>
+                    </ul>
+                    <p class="text-gray-400 text-sm text-center mt-4">
+                        Try selecting one of these available dates
+                    </p>
+                </div>
+            </div>
+                    
+        </main>
+</body>
+<%- include("partials/footer.ejs") %>
+
+</html>
