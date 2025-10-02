@@ -32,24 +32,26 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-6">
-                <% if(locals.sols) { %>
-                    <% for (var i=0; i < locals.sols.length; i++) { %>
-                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700">
-                            <h2 class="text-xl font-bold text-white mb-6 text-center">
-                                <%= locals.sols[i] %>
-                            </h2>
-                            <ul class="grid grid-cols-5 gap-3 text-center">
-                                <li
-                                    class="bg-red-600/20 text-red-300 border border-red-500/30 rounded-lg py-2 px-3 text-sm cursor-pointer hover:bg-red-600/30 hover:text-red-200 transition-all duration-200">
-                                    Test
-                                </li>
-                            </ul>
-                        </div>
-                        <% } %>
-                    <% } %>
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 gap-6">
+                    <% if(locals.sols) { %>
+                        <% for (var i=0; i < locals.sols.length; i++) { %>
+                            <div
+                                class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700">
+                                <h2 class="text-xl font-bold text-white mb-6 text-center">
+                                    <%= locals.sols[i] %>
+                                </h2>
+                                <ul class="grid grid-cols-5 gap-3 text-center">
+                                    <li
+                                        class="bg-red-600/20 text-red-300 border border-red-500/30 rounded-lg py-2 px-3 text-sm cursor-pointer hover:bg-red-600/30 hover:text-red-200 transition-all duration-200">
+                                        Test
+                                    </li>
+                                </ul>
+                            </div>
+                            <% } %>
+                                <% } %>
+                </div>
             </div>
-
         </main>
 </body>
 <%- include("partials/footer.ejs") %>
