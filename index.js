@@ -95,27 +95,33 @@ app.post("/mars-rover", async (req, res) => {
 app.post("/nasa-library", async (req, res) => {
   try {
     const baseUrl = "https://images-api.nasa.gov/search";
-
-    console.log(req.body.start, req.body.end);
-    
+    const start = req.body.start.length === 0 ? "1900" : req.body.start;
+    const end = req.body.end.length === 0 ? "2025" : req.body.end;
 
     const result = await axios.get(baseUrl, {
       params: {
-        q: "apollo 11",
+        q: req.body.search,
         media_type: "image",
-        year_start: "1969",
+        year_start: start,
+        year_end: end,
       },
     });
 
     const items = result.data.collection.items;
-    const allHrefs = items.flatMap((item) =>
-      item.links.map((link) => link.href)
-    );
-    console.log(allHrefs);
 
+    const mediumImages = items
+      .flatMap((item) =>
+        item.links
+          .filter((link) => link.href.includes("~medium.jpg"))
+          .map((link) => link.href)
+      )
+      .slice(0, 60);
 
     res.render("nasa-library.ejs", {
-      photos: result.data.collection.items
+      photos: mediumImages,
+      start: start,
+      end: end,
+      search: req.body.search,
     });
   } catch (error) {
     console.log(error.response.data);

@@ -24,15 +24,15 @@
 
             <% if(locals.photos) { %>
                 <div class="mb-16">
-                    <h2 class="text-3xl font-bold text-white text-center mb-8">Results -- Change this</h2>
+                    <h2 class="text-3xl font-bold text-white text-center mb-8"> Results for "<%= locals.search %>" from <%= locals.start %> to <%= locals.end %></h2>
                     <div class="max-w-6xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <% for (let i=0; i < Math.min(locals.photos.length, 15); i++) { %>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                            <% for (let i=0; i < Math.min(locals.photos.length, 30); i++) { %>
                                 <div
                                     class="group relative overflow-hidden rounded-2xl bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300">
                                     <div class="aspect-square overflow-hidden">
                                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                            src="<%= locals.photos[i].href[2] %>" alt="NASA Media <%= i + 1 %>" />
+                                            src="<%= locals.photos[i]%>" alt="NASA Media <%= i + 1 %>" />
                                     </div>
                                     <div
                                         class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -45,9 +45,9 @@
                                 <% } %>
                         </div>
 
-                        <% if(locals.photos.length> 15) { %>
+                        <% if(locals.photos.length> 30) { %>
                             <div class="text-center mt-8">
-                                <p class="text-gray-400">Showing 15 of <%= locals.photos.length %> photos</p>
+                                <p class="text-gray-400">Showing 30 of <%= locals.photos.length %> photos</p>
                             </div>
                             <% } %>
                     </div>
@@ -63,18 +63,10 @@
 
                             <form action="/nasa-library" method="POST" class="space-y-6">
                                 <div>
-                                    <label for="rover" class="block mb-2 text-sm font-semibold text-gray-300">
+                                    <label class="block mb-2 text-sm font-semibold text-gray-300">
                                         Search
                                     </label>
-                                    <input type="text" name="rover" id="rover" placeholder="e.g., Curiosity"
-                                        class="w-full p-3 rounded-lg bg-gray-700 text-white border-2 border-gray-600 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 transition-all">
-                                </div>
-
-                                <div>
-                                    <label for="rover" class="block mb-2 text-sm font-semibold text-gray-300">
-                                        Media
-                                    </label>
-                                    <input type="text" name="rover" id="rover" placeholder="e.g., “image”, “video”"
+                                    <input type="text" name="search" placeholder="e.g., Curiosity"
                                         class="w-full p-3 rounded-lg bg-gray-700 text-white border-2 border-gray-600 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 transition-all">
                                 </div>
 
