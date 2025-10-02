@@ -54,6 +54,7 @@ app.post("/apod-picture", async (req, res) => {
       text: result.data.explanation,
       title: result.data.title,
       image: result.data.hdurl,
+      name: result.data.copyright.trim() || "NASA",
     });
   } catch (error) {
     console.log(error.response.data);
