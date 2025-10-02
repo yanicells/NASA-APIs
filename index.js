@@ -119,11 +119,13 @@ app.post("/nasa-library", async (req, res) => {
     const mediumImages = items
       .flatMap((item) =>
         item.links
-          .filter((link) => link.href.includes("~medium.jpg"))
+          .filter((link) => link.href.includes("~medium.jpg") || link.href.includes("medium") || link.href.includes("~thumb.jpg"))
           .map((link) => link.href)
       )
       .slice(0, 60);
-
+    
+    console.log(mediumImages);  
+    
     res.render("nasa-library.ejs", {
       photos: mediumImages,
       start: start,

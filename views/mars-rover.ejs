@@ -30,11 +30,11 @@
                     </h2>
                 <% } else { %>
                 <h2 class="text-3xl font-bold text-white text-center mb-8">No results found...</h2>
-                <div class="max-w-md mx-auto mt-6">
+                <div class="max-w-2xl mx-auto mt-6">
                     <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700">
                         <h2 class="text-xl font-bold text-white mb-6 text-center">Available Mars Rover Photo Dates</h2>
-                        <ul class="grid grid-cols-3 gap-3 text-center">
-                        <% for (let i=0; i < Math.min(locals.dates.length, 15); i++) { %>
+                        <ul class="grid grid-cols-5 gap-3 text-center">
+                        <% for (let i=0; i < Math.min(locals.dates.length, 30); i++) { %>
                         <li class="bg-red-600/20 text-red-300 border border-red-500/30 rounded-lg py-2 px-3 text-sm cursor-pointer hover:bg-red-600/30 hover:text-red-200 transition-all duration-200">
                           <%= locals.dates[i] %>
                         </li>
@@ -59,7 +59,7 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-4 left-4 text-white">
                                     <p class="text-sm font-medium">Photo <%= i + 1 %></p>
-                                    <p class="text-xs text-gray-300">Mars Surface</p>
+                                    <p class="text-xs text-gray-300 break-all"><%= locals.photos[i].img_src %></p>
                                 </div>
                             </div>
                         </div>
