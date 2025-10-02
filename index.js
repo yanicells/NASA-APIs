@@ -94,8 +94,10 @@ app.post("/mars-rover", async (req, res) => {
 
 app.post("/nasa-library", async (req, res) => {
   try {
-    const selectedDate = req.body.selectedDate;
-    const roverName = req.body.rover;
+    let q = "";
+    
+    console.log(req.body.start, req.body.end);
+    
 
     const result = await axios.get(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos`,
