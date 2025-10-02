@@ -81,10 +81,28 @@ app.post("/mars-rover", async (req, res) => {
       }
     );
 
-    console.log(result.data.photos);
+    const dates = await axios.get(
+      `https://api.nasa.gov/mars-photos/api/v1/manifests/${roverName}`,
+      {
+        params: {
+          api_key: api_key,
+        },
+      }
+    );
+
+    const availableDates = dates.data.photo_manifest.photos;
+
+    const datesList = availableDates
+      .map((date) => date.earth_date) // extract earth_date string directly
+      .slice(0, 60); // limit to first 60 dates
+
+    console.log(datesList);
 
     res.render("mars-rover.ejs", {
       photos: result.data.photos,
+      date: selectedDate,
+      name: roverName,
+      dates: datesList,
     });
   } catch (error) {
     console.log(error.response.data);
