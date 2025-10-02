@@ -2649,6 +2649,12 @@
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
   }
+  .pl-3 {
+    padding-left: calc(var(--spacing) * 3);
+  }
+  .pl-10 {
+    padding-left: calc(var(--spacing) * 10);
+  }
   .datatable-empty {
     .datatable-wrapper .datatable-table & {
       text-align: center;

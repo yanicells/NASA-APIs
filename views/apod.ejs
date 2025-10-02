@@ -22,47 +22,52 @@
             </h1>
         </div>
 
-        <% if(locals.text) { %>
-        <div class="flex justify-center mb-16">
-            <div class="max-w-4xl w-full">
-                <div class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden">
-                    <div class="aspect-video w-full overflow-hidden relative group">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                             src="<%= image %>" 
-                             alt="<%= title %>" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-
-                    <div class="p-8 md:p-10">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 text-xs font-semibold bg-purple-600 text-white rounded-full">
-                                <%= name %>
-                            </span>
-                            <time class="text-sm font-medium text-gray-400 bg-gray-700 px-3 py-1 rounded-full">
-                                <%= date %>
-                            </time>
-                        </div>
-                        
-                        <h2 class="mb-6 text-3xl md:text-4xl font-bold text-white leading-tight">
-                            <%= title %>
-                        </h2>
-                        
-                        <div class="prose prose-lg prose-invert max-w-none">
-                            <p class="text-gray-300 leading-relaxed text-lg">
-                                <%= text %>
-                            </p>
-                        </div>
-                        
-                        <div class="mt-8 pt-6 border-t border-gray-700">
-                            <p class="text-sm text-gray-400 italic">
-                                Image courtesy of NASA's Astronomy Picture of the Day
-                            </p>
+        <% if (locals.apods && apods.length) { %>
+            <% apods.forEach(apod=> { %>
+                <div class="flex justify-center mb-16">
+                    <div class="max-w-4xl w-full">
+                        <div
+                            class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden">
+                            <div class="aspect-video w-full overflow-hidden relative group">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="<%= apod.hdurl %>" alt="<%= apod.title %>" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                            </div>
+        
+                            <div class="p-8 md:p-10">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 text-xs font-semibold bg-purple-600 text-white rounded-full">
+                                        <%= apod.copyright ? apod.copyright.trim() : 'NASA' %>
+                                    </span>
+                                    <time class="text-sm font-medium text-gray-400 bg-gray-700 px-3 py-1 rounded-full">
+                                        <%= apod.date %>
+                                    </time>
+                                </div>
+        
+                                <h2 class="mb-6 text-3xl md:text-4xl font-bold text-white leading-tight">
+                                    <%= apod.title %>
+                                </h2>
+        
+                                <div class="prose prose-lg prose-invert max-w-none">
+                                    <p class="text-gray-300 leading-relaxed text-lg">
+                                        <%= apod.explanation %>
+                                    </p>
+                                </div>
+        
+                                <div class="mt-8 pt-6 border-t border-gray-700">
+                                    <p class="text-sm text-gray-400 italic">
+                                        Image courtesy of NASA's Astronomy Picture of the Day
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <% } %>
+                <% }) %>
+                    <% } %>
+
 
         <div class="flex justify-center">
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700">
@@ -72,13 +77,36 @@
                 
                 <form action="/apod-picture" method="POST" class="space-y-6">
                     <div>
-                        <label for="dateInput" class="block mb-2 text-sm font-semibold text-gray-300">
+                        <label class="block mb-2 text-sm font-semibold text-gray-300">
                             Select Date
                         </label>
-                        <input type="date" 
-                               id="dateInput" 
-                               name="selectedDate"
-                               class="w-full p-3 rounded-lg bg-gray-700 text-white border-2 border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all">
+                        <div id="date-range-picker" date-rangepicker class="flex items-center space-x-2">
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-start" 
+                                       name="start" 
+                                       type="date" 
+                                       class="w-full pl-10 p-3 rounded-lg bg-gray-700 text-white border-2 border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm" 
+                                       placeholder="2005-06-26">
+                            </div>
+                            <span class="text-gray-400 font-medium">to</span>
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-end" 
+                                       name="end" 
+                                       type="date" 
+                                       class="w-full pl-10 p-3 rounded-lg bg-gray-700 text-white border-2 border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm" 
+                                       placeholder="2005-06-26">
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit"
