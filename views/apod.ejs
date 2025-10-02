@@ -23,51 +23,61 @@
         </div>
 
         <% if (locals.apods && apods.length) { %>
-            <% apods.forEach(apod=> { %>
-                <div class="flex justify-center mb-16">
-                    <div class="max-w-4xl w-full">
-                        <div
-                            class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden">
-                            <div class="aspect-video w-full overflow-hidden relative group">
-                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    src="<%= apod.hdurl %>" alt="<%= apod.title %>" />
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                </div>
+            <% if (apods.length === 1) { %>
+                <div class="flex justify-center mb-16 max-w-5xl mx-auto">
+            <% } else if (apods.length === 2) { %>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
+            <% } else { %>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-7xl mx-auto">
+            <% } %>
+                <% apods.forEach(apod => { %>
+                    <% if (apods.length === 1) { %>
+                        <div class="w-full max-w-4xl">
+                    <% } %>
+                    
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 
+                        <%= apods.length === 1 ? 'rounded-3xl' : (apods.length === 2 ? 'rounded-3xl' : 'rounded-2xl') %> 
+                        shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300">
+                        <div class="aspect-video w-full overflow-hidden relative group">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="<%= apod.hdurl || apod.url %>" alt="<%= apod.title %>" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             </div>
-        
-                            <div class="p-8 md:p-10">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="px-3 py-1 text-xs font-semibold bg-purple-600 text-white rounded-full">
-                                        <%= apod.copyright ? apod.copyright.trim() : 'NASA' %>
-                                    </span>
-                                    <time class="text-sm font-medium text-gray-400 bg-gray-700 px-3 py-1 rounded-full">
-                                        <%= apod.date %>
-                                    </time>
-                                </div>
-        
-                                <h2 class="mb-6 text-3xl md:text-4xl font-bold text-white leading-tight">
-                                    <%= apod.title %>
-                                </h2>
-        
-                                <div class="prose prose-lg prose-invert max-w-none">
-                                    <p class="text-gray-300 leading-relaxed text-lg">
-                                        <%= apod.explanation %>
-                                    </p>
-                                </div>
-        
-                                <div class="mt-8 pt-6 border-t border-gray-700">
-                                    <p class="text-sm text-gray-400 italic">
-                                        Image courtesy of NASA's Astronomy Picture of the Day
-                                    </p>
-                                </div>
+                        </div>
+
+                        <div class="<%= apods.length === 1 ? 'p-10 md:p-12' : (apods.length === 2 ? 'p-8 md:p-10' : 'p-6') %>">
+                            <div class="flex items-center justify-between <%= apods.length >= 3 ? 'mb-3' : 'mb-4' %>">
+                                <span class="<%= apods.length >= 3 ? 'px-2 py-1 text-xs' : 'px-3 py-1 text-xs' %> font-semibold bg-purple-600 text-white rounded-full">
+                                    <%= apod.copyright ? apod.copyright.trim() : 'NASA' %>
+                                </span>
+                                <time class="<%= apods.length >= 3 ? 'text-xs px-2 py-1' : 'text-sm px-3 py-1' %> font-medium text-gray-400 bg-gray-700 rounded-full">
+                                    <%= apod.date %>
+                                </time>
+                            </div>
+
+                            <h2 class="<%= apods.length === 1 ? 'mb-8 text-4xl md:text-5xl' : (apods.length === 2 ? 'mb-6 text-2xl md:text-3xl' : 'mb-3 text-xl') %> font-bold text-white leading-tight">
+                                <%= apod.title %>
+                            </h2>
+
+                            <div class="<%= apods.length >= 3 ? 'mb-4' : 'prose prose-lg prose-invert max-w-none' %>">
+                                <p class="text-gray-300 leading-relaxed <%= apods.length === 1 ? 'text-xl' : (apods.length === 2 ? 'text-lg' : 'text-sm') %>">
+                                    <%= apod.explanation %>
+                                </p>
+                            </div>
+
+                            <div class="<%= apods.length >= 3 ? 'pt-4' : 'mt-8 pt-6' %> border-t border-gray-700">
+                                <p class="<%= apods.length >= 3 ? 'text-xs' : 'text-sm' %> text-gray-400 italic">
+                                    <%= apods.length >= 3 ? 'NASA APOD' : 'Image courtesy of NASA\'s Astronomy Picture of the Day' %>
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <% }) %>
+                    <% if (apods.length === 1) { %>
+                        </div>
                     <% } %>
-
+                <% }) %>
+            </div>
+        <% } %>
 
         <div class="flex justify-center">
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700">
