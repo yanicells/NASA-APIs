@@ -90,7 +90,6 @@ app.post("/mars-rover", async (req, res) => {
       .map((date) => date.earth_date) // extract earth_date string directly
       .reverse()
       .slice(0, 60); // limit to first 60 dates
-    console.log(datesList);
     
     res.render("mars-rover.ejs", {
       photos: result.data.photos,
