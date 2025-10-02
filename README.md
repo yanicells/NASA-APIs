@@ -71,4 +71,4 @@ Project will be available at: http://localhost:3000
 - Daily astronomy pictures with detailed descriptions
 - Mars rover photo gallery with date filtering
 - Searchable NASA media library
-- Responsive design for all devices
+- Real-time, detailed data on Mars' weather
