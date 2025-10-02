@@ -145,24 +145,24 @@ app.post("/nasa-library", async (req, res) => {
 
 app.post("/mars-weather", async (req, res) => {
   try {
-    const weatherData = await axios.get("https://api.nasa.gov/insight_weather", {
-      params: {
-        api_key: api_key,
-        feedtype: "json",
-        ver: "1.0",
-      },
-    });
-
-    const solKeys = data.sol_keys;
-    console.log(solKeys);
+    const weatherData = await axios.get(
+      "https://api.nasa.gov/insight_weather",
+      {
+        params: {
+          api_key: api_key,
+          feedtype: "json",
+          ver: "1.0",
+        },
+      }
+    );
 
     res.render("mars-weather.ejs", {
-      
+      solKeys: weatherData.data.sol_keys,
+      weatherData: weatherData.data,
     });
   } catch (error) {
-    console.log(error.response.data);
-    res.redirect("/mars-rover");
-    res.status(500);
+    console.log(error.response?.data || error.message);
+    res.status(500).redirect("/mars-weather");
   }
 });
 
