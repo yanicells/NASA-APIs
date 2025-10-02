@@ -21,7 +21,7 @@
                     </span>
                 </h1>
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center <%= locals.sols ? 'hidden' : '' %>">
                 <div class="pt-8">
                     <form action="/mars-weather" method="POST" class="space-y-6">
                         <button type="submit"
@@ -31,10 +31,11 @@
                     </form>
                 </div>
             </div>
-            <% if(locals.sols) { %>
-                <% for (var i=0; i < locals.sols.length; i++) { %>
-                    <div class="max-w-2xl mx-auto mt-6">
-                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700">
+
+            <div class="grid grid-cols-2 gap-6">
+                <% if(locals.sols) { %>
+                    <% for (var i=0; i < locals.sols.length; i++) { %>
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700">
                             <h2 class="text-xl font-bold text-white mb-6 text-center">
                                 <%= locals.sols[i] %>
                             </h2>
@@ -45,9 +46,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                        <% } %>
                     <% } %>
-                <% } %>
+            </div>
+
         </main>
 </body>
 <%- include("partials/footer.ejs") %>
