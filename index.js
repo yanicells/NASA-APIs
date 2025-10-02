@@ -36,8 +36,6 @@ app.post("/apod-picture", async (req, res) => {
   try {
     const start_date = req.body.start;
     const end_date = req.body.end.length === 0 ? start_date : req.body.end;
-    console.log(start_date, end_date);
-    
 
     const result = await axios.get("https://api.nasa.gov/planetary/apod", {
       params: {
@@ -53,6 +51,7 @@ app.post("/apod-picture", async (req, res) => {
     });
   } catch (error) {
     console.log(error.response.data);
+    res.redirect("/apod");
     res.status(500);
   }
 });
@@ -95,6 +94,7 @@ app.post("/mars-rover", async (req, res) => {
     });
   } catch (error) {
     console.log(error.response.data);
+    res.redirect("/mars-rover");
     res.status(500);
   }
 });
@@ -132,6 +132,7 @@ app.post("/nasa-library", async (req, res) => {
     });
   } catch (error) {
     console.log(error.response.data);
+    res.redirect("/nasa-library");
     res.status(500);
   }
 });

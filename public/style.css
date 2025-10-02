@@ -1464,6 +1464,21 @@
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
+  .h-60 {
+    height: calc(var(--spacing) * 60);
+  }
+  .h-63 {
+    height: calc(var(--spacing) * 63);
+  }
+  .h-65 {
+    height: calc(var(--spacing) * 65);
+  }
+  .h-70 {
+    height: calc(var(--spacing) * 70);
+  }
+  .h-80 {
+    height: calc(var(--spacing) * 80);
+  }
   .h-\[16em\] {
     height: 16em;
   }
