@@ -94,25 +94,28 @@ app.post("/mars-rover", async (req, res) => {
 
 app.post("/nasa-library", async (req, res) => {
   try {
-    let q = "";
-    
+    const baseUrl = "https://images-api.nasa.gov/search";
+
     console.log(req.body.start, req.body.end);
     
 
-    const result = await axios.get(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos`,
-      {
-        params: {
-          earth_date: selectedDate,
-          api_key: api_key,
-        },
-      }
+    const result = await axios.get(baseUrl, {
+      params: {
+        q: "apollo 11",
+        media_type: "image",
+        year_start: "1969",
+      },
+    });
+
+    const items = result.data.collection.items;
+    const allHrefs = items.flatMap((item) =>
+      item.links.map((link) => link.href)
     );
+    console.log(allHrefs);
 
-    console.log(result.data.photos);
 
-    res.render("mars-rover.ejs", {
-      photos: result.data.photos,
+    res.render("nasa-library.ejs", {
+      photos: result.data.collection.items
     });
   } catch (error) {
     console.log(error.response.data);
