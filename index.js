@@ -32,6 +32,10 @@ app.get("/nasa-library", (req, res) =>{
   res.render("nasa-library.ejs")
 })
 
+app.get("/mars-weather", (req, res) => {
+  res.render("mars-weather.ejs");
+});
+
 app.post("/apod-picture", async (req, res) => {
   try {
     const start_date = req.body.start;
