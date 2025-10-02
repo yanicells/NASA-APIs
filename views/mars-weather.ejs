@@ -34,22 +34,32 @@
 
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-2 gap-6">
-                    <% if(locals.sols) { %>
+                    <% if (locals.sols) { %>
                         <% for (var i=0; i < locals.sols.length; i++) { %>
-                            <div
-                                class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700">
-                                <h2 class="text-xl font-bold text-white mb-6 text-center">
-                                    <%= locals.sols[i] %>
-                                </h2>
-                                <ul class="grid grid-cols-5 gap-3 text-center">
-                                    <li
-                                        class="bg-red-600/20 text-red-300 border border-red-500/30 rounded-lg py-2 px-3 text-sm cursor-pointer hover:bg-red-600/30 hover:text-red-200 transition-all duration-200">
-                                        Test
-                                    </li>
-                                </ul>
-                            </div>
-                            <% } %>
+                            <% const sol=locals.sols[i]; const solData=locals.weather[sol]; %>
+                                <div
+                                    class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700 mb-8">
+                                    <h2 class="text-xl font-bold text-white mb-6 text-center">
+                                        Sol <%= sol %>
+                                    </h2>
+                    
+                                    <div class="mb-6 p-4 bg-gray-800 rounded-lg shadow text-white">
+                                        <p>Season: <%= solData?.Season ?? 'N/A' %>
+                                        </p>
+                                        <p>First UTC: <%= solData?.First_UTC ?? 'N/A' %>
+                                        </p>
+                                        <p>Average Temperature: <%= solData?.AT?.av ?? 'N/A' %> °C</p>
+                                        <p>Average Wind Speed: <%= solData?.HWS?.av ?? 'N/A' %> m/s</p>
+                                        <p>Average Pressure: <%= solData?.PRE?.av ?? 'N/A' %> Pa</p>
+                                        <p>
+                                            Most Common Wind Direction:
+                                            <%= solData?.WD?.most_common?.compass_point ?? 'N/A' %>
+                                        </p>
+                                    </div>
+                                </div>
                                 <% } %>
+                        <% } %>
+
                 </div>
             </div>
         </main>
