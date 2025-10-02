@@ -28,6 +28,10 @@ app.get("/mars-rover", (req, res) => {
   res.render("mars-rover.ejs");
 });
 
+app.get("/nasa-library", (req, res) =>{
+  res.render("nasa-library.ejs")
+})
+
 app.post("/apod-picture", async (req, res) => {
   try {
     const selectedDate = req.body.selectedDate;
@@ -63,6 +67,32 @@ app.post("/apod-picture", async (req, res) => {
 });
 
 app.post("/mars-rover", async (req, res) => {
+  try {
+    const selectedDate = req.body.selectedDate;
+    const roverName = req.body.rover;
+
+    const result = await axios.get(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos`,
+      {
+        params: {
+          earth_date: selectedDate,
+          api_key: api_key,
+        },
+      }
+    );
+
+    console.log(result.data.photos);
+
+    res.render("mars-rover.ejs", {
+      photos: result.data.photos,
+    });
+  } catch (error) {
+    console.log(error.response.data);
+    res.status(500);
+  }
+});
+
+app.post("/nasa-library", async (req, res) => {
   try {
     const selectedDate = req.body.selectedDate;
     const roverName = req.body.rover;
