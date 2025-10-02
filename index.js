@@ -150,8 +150,6 @@ app.post("/mars-weather", async (req, res) => {
       `https://api.nasa.gov/insight_weather/?api_key=${api_key}&feedtype=json&ver=1.0`
     );
 
-    console.log(weatherData.data);
-    
     res.render("mars-weather.ejs", {
       weather: weatherData.data,
       sols: weatherData.data.sol_keys,
