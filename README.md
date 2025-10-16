@@ -1,6 +1,6 @@
 # NASA APIs Explorer
 
-A web application that provides access to NASA's incredible space data and imagery through various APIs. Explore astronomy pictures, Mars rover photos, NASA's extensive media library, and Mars' weather data all in one place. The APIs used in this project, and the complete list of NASA's APIs can be found through this link: [https://api.nasa.gov](https://api.nasa.gov)
+A web application that provides access to NASA's incredible space data and imagery through various APIs. Explore astronomy pictures, Mars rover photos, NASA's extensive media library, and Mars' weather data all in one place. The APIs used in this project, and the complete list of NASA's APIs can be found through this link: [https://api.nasa.gov](https://api.nasa.gov). A demo of the app can be found through this link [https://drive.google.com/file/d/1n3MuIYU4EHJ0Kgk4n10nx89EVc9-OFR8/view].
 
 
 ## Tech Stack
